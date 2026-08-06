@@ -1151,6 +1151,16 @@ COCO_WORKSHOP.SOURCE_DATA.BRONZE_ORACLE_AP_INVOICES를 결합하여 만들어줘
     </p>
     <p>먼저 사용 가능한 스킬 목록을 확인하세요:</p>
     <pre><code>/skill list</code></pre>
+
+    <div class="annotation">
+      <div class="annotation-header">
+        <span class="annotation-icon">✏️</span>
+        <span class="annotation-label">추가 안내</span>
+      </div>
+      <p>스킬 리스트에서 빠져나오려면 ESC 를 입력하세요.</p>
+    </div>
+
+
     <p>Dynamic Tables 스킬을 적용하기 전에 살펴보세요:</p>
     <details class="prompt-original">
       <summary>영어 원문</summary>
@@ -1225,6 +1235,15 @@ by SOURCE_SYSTEM and is easy to rerun after future changes.</code></pre>
     <p>데모 2를 시작하기 전에 세 파일을 모두 다운로드하세요.</p>
 
     <h3>GitHub Codespaces에서 실행</h3>
+
+    <div class="annotation">
+      <div class="annotation-header">
+        <span class="annotation-icon">✏️</span>
+        <span class="annotation-label">추가 안내</span>
+      </div>
+      <p><strong>이 항목은 GitHub Codespaces를 사용할때만 사용합니다.</strong></p>
+    </div>
+
     <p>
       GitHub Codespaces를 사용 중이라면 로컬 장치로 파일을 다운로드할 수 없습니다.
       대신, Codespaces 터미널에서 직접 CSV 파일을 작업 디렉터리로 가져오세요.
@@ -1349,7 +1368,7 @@ Return:
 4. DDL delta plan for SILVER_AP_INVOICES
 5. Validation queries to run after implementation</code></pre>
     </details>
-    <pre><code>방금 만든 prd-to-silver 프로젝트 스킬을 실행해.
+    <pre><code>방금 만든 프로젝트 스킬을 실행해.
 컨텍스트:
 - prd_path: sample_business_requirements_column_mapping.csv
 - target_dynamic_table: SILVER_AP_INVOICES
@@ -1458,7 +1477,7 @@ Suggest:
 - Guardrails that keep the agent grounded in the curated data
 - Any semantic descriptions that would improve answer quality</code></pre>
     </details>
-    <pre><code>현재 스키마의 SILVER_AP_INVOICES 위에 Cortex 데이터 에이전트를 정의하는 데 도와줘.
+    <pre><code>현재 스키마의 SILVER_AP_INVOICES 위에 Cortex 데이터 에이전트를 정의하는 데 도와줘. 작업은 하지말고 제안만 해줘
 제안 항목:
 - 주 사용대상
 - 에이전트가 답해야 할 상위 5개 비즈니스 질문
