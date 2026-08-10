@@ -769,8 +769,9 @@
       <span class="annotation-icon">✏️</span>
       <span class="annotation-label">추가 안내</span>
     </div>
+    <h3>PAT를 사용하여 연결</h3>
+    <p>이 워크숍에서는 CoCo CLI를 사용하기 위해 PAT(Programmatic Access Token)를 사용합니다. PAT를 사용하기 위해서는 먼저 Network Policy를 Account에 적용해야 합니다.</p>
     <h3>Network Policy 설정</h3>
-    <p>CoCo CLI를 사용하기 위해 Password 대신 PAT를 사용합니다. PAT를 사용하기 위해서는 먼저 Network Policy를 Account에 적용해야 합니다.</p>
     <ul>
       <li>Snowsight &gt; Catalog &gt; Database Explorer 에서 오른쪽 상단 [+ Database] 클릭 후 <code>ADMIN</code> 데이터베이스 생성 (Network Rule이 위치할 곳)</li>
       <li>Snowsight &gt; Governance &amp; security &gt; Network policies 에서 오른쪽 상단 [+ Network Policy] 버튼 클릭</li>
@@ -797,6 +798,26 @@
       <li>Name(예 : CoCo_PAT)을 입력하고 Single role에 ACCOUNTADMIN으로 설정한 상태에서 [Generate] 버튼 클릭</li>
     </ul>
     <p>위에서 확인한 계정식별자 정보와 사용하는 유저명, 그리고 PAT 값을 기록해두고 다음 CoCo CLI 설치에서 사용하도록 합니다.</p>
+    <p><strong>PAT가 아닌 Oauth를 통한 연결에 대해 알고 싶다면 아래 <code>참고 - Oauth를 사용하여 연결</code>을 참고하세요.</strong></p>
+    
+  </div>
+  <div class="annotation">
+    <div class="annotation-header">
+      <span class="annotation-icon">✏️</span>
+      <span class="annotation-label">추가 안내</span>
+    </div>
+    <h3>참고 - Oauth를 사용하여 연결</h3>
+    <p>이 워크숍에서는 PAT를 사용하고 있지만 CoCo CLI를 사용하기 위해 Oauth 방식을 사용할 수도 있습니다. Oauth 방식을 사용하면 브라우저를 통한 인증으로 CoCo CLI를 사용할 수 있습니다.</p>
+    <p>Oauth를 사용하고자 한다면 CoCo CLI 설치에서 config.toml에 입력할 내용 대신(임시 메모에 작성한 내용) 대신 아래 내용을 수정해서 사용하세요.</p>
+    <pre><code>default_connection_name = "DEMO"
+
+[connections.DEMO]
+account   = "YOUR_DEMO_ACCOUNT"
+user      = "YOUR_DEMO_USERNAME"
+authenticator = "oauth_authorization_code"
+client_store_temporary_credential = true</code></pre>
+
+    <p>이 설정이후에 CoCo CLI를 실행하면 브라우저를 통한 Snowflake 인증을 시도하게됩니다.</p>
     
   </div>
   </section>
@@ -1597,6 +1618,7 @@ AP_ANALYTICS_ASSISTANT라는 이름의 에이전트를 생성해.
     <div class="note">
       <em>이 콘텐츠는 현재 상태 그대로 제공되며 지속적으로 유지·관리되지 않습니다. 최신 Snowflake 인스턴스와 다를 수 있습니다.</em>
     </div>
+
   </section>
 
 </div>
