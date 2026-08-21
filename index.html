@@ -713,7 +713,7 @@
         <span class="annotation-icon">✏️</span>
         <span class="annotation-label">추가 안내</span>
       </div>
-      <p><a href="https://training.snowflake.com/lmt/clmsCatalogDetails.prMain?in_sessionId=4334J42003A02900&in_from_module=CLMSBROWSEV2.PRMAIN&in_offeringId=220836544" target="_blank">CoCo Essentials 온디맨드 교육</a>에서 CoCo Snowsight에 대한 추가 학습을 하실 수 있습니다.</p>
+      <p><a href="https://training.snowflake.com/lmt/!clmsLink.dt?site=sf&p_region=us&lang=ko&type=O&id=220836544" target="_blank">CoCo Essentials 온디맨드 교육</a>에서 CoCo Snowsight에 대한 추가 학습을 하실 수 있습니다.</p>
       <p>위 교육의 실습 노트북의 한국어 버전    -> <a href="https://github.com/Kiru9/coco_swt/raw/23409f65b75648d29169f4ab1f8ccdc4449b1da7/CoCo%20Labs%20ko.zip"
         download
         style="
@@ -1087,7 +1087,7 @@ cd COCO</code></pre>
   <section id="demo1">
     <h2>데모 1: 파이프라인 빌더</h2>
     <p>
-      재무팀은 신뢰할 수 있는 AP 인보이스 레이어가 필요합니다. SAP와 Oracle의 인보이스 데이터는 Snowflake에 이미 존재하지만,
+      재무팀은 신뢰할 수 있는 AP(Accounts Payable- 매입채무, 공급업체에 지급해야 할 금액) 인보이스 레이어가 필요합니다. SAP와 Oracle의 인보이스 데이터는 Snowflake에 이미 존재하지만,
       표준화된 Silver 객체가 없습니다. 목표는 요구 사항이 변경될 때마다 탐색 작업을 반복하지 않고도 설명, 모니터링,
       발전시킬 수 있는 단일의 잘 모델링된 테이블을 만드는 것입니다.
     </p>
@@ -1160,6 +1160,18 @@ COCO_WORKSHOP.SOURCE_DATA.BRONZE_ORACLE_AP_INVOICES를 결합하여 만들어줘
     </div>
     <p>완료 후 Plan Mode를 종료하세요 — 실행을 승인하면 자동으로 꺼집니다.</p>
 
+
+    <div class="annotation">
+      <div class="annotation-header">
+        <span class="annotation-icon">✏️</span>
+        <span class="annotation-label">추가 안내</span>
+      </div>
+      <p>Snowsight에서 <strong>Transformation > Dynamic Table</strong> 항목으로 이동 후 생성된 Dynamic Table을 확인해볼수 있습니다.</p>
+      <p>생성된 Dynamic Table을 클릭 후 <strong>Graph</strong> 탭을 선택하여 Data Lineage를 확인해보세요. </p>
+      <p><strong>Data Preview</strong> 탭에서 현재 데이터와 <strong>Refresh History</strong> 탭에서 Dynamic Table의 자동 갱신 이력을 확인할 수 있습니다.</p>
+    </div>
+
+
     <h3><span class="step-label">Step 1.4</span> 번들 <code>$dynamic-tables</code> 스킬 사용</h3>
     <p>
       스킬(Skill)은 특정 Snowflake 작업을 처리하는 방법을 CoCo에 알려주는 재사용 가능한 워크플로입니다.
@@ -1227,7 +1239,7 @@ by SOURCE_SYSTEM and is easy to rerun after future changes.</code></pre>
       <p>필요하다면 작성해준 쿼리를 위 파일이름으로 저장하라고 요청할 수 있습니다.</p>
     </div>
     <p>
-      데모 1이 끝나면 Silver 등급의 AP 인보이스 Dynamic Table, 번들 스킬로 생성한 운영 런북,
+      데모 1이 끝나면 Silver 레벨의 AP 인보이스 Dynamic Table, 번들 스킬로 생성한 운영 런북,
       그리고 변경마다 재실행할 증명 쿼리를 갖게 됩니다.
     </p>
   </section>
@@ -1236,7 +1248,7 @@ by SOURCE_SYSTEM and is easy to rerun after future changes.</code></pre>
   <section id="demo2">
     <h2>데모 2: 로컬 컨텍스트 추가 및 프로덕션화</h2>
     <p>
-      한 달 후, 비즈니스에서 AP 인보이스 파이프라인을 확장하는 PRD를 전달합니다. 새 소스 시스템 추가,
+      한 달 후, 비즈니스에서 AP 인보이스 파이프라인을 확장하는 PRD(Product Requirements Documents)를 전달합니다. 새 소스 시스템 추가,
       필드 요구 사항 변경, 일부 정의 명확화가 필요합니다. 매번 긴 프롬프트로 해결하는 대신,
       이 워크플로를 커스텀 스킬로 표준화할 수 있습니다.
     </p>
@@ -1244,9 +1256,11 @@ by SOURCE_SYSTEM and is easy to rerun after future changes.</code></pre>
     <h3>샘플 PRD 소개</h3>
     <p><a href="https://northstar.streamlit.app/Event_Page?event=Seoul+%288%2F27%2F2026%29" target="_blank">이벤트 페이지</a>에서 Finance Transformation PMO가 준비한 세 개의 CSV 파일을 다운로드하세요:</p>
     <ul>
-      <li><code>sample_business_requirements_source_onboarding.csv</code> — 새 소스 시스템(Baan, Workday), 담당자, 우선순위, 목표 일정</li>
-      <li><code>sample_business_requirements_column_mapping.csv</code> — 두 새 소스에서 Silver 스키마로의 필드 수준 매핑</li>
-      <li><code>sample_business_requirements_business_rules.csv</code> — 상태 정규화, 중복 제거 로직, 통화 처리, 열린 질문 등 BR-001~BR-010</li>
+      <li><code>sample_business_requirements_source_onboarding.csv</code> — Finance PMO가 기존 SAP/Oracle 파이프라인에 Baan과 Workday 두 시스템을 추가하기 위한 요청·승인·제약사항을 정리한 문서입니다
+예) 새 소스 시스템(Baan, Workday), 담당자, 우선순위, 목표 일정</li>
+      <li><code>sample_business_requirements_column_mapping.csv</code> — 이 파일은 Baan과 Workday의 소스 컬럼을 Silver 통합 스키마에 매핑하는 명세서입니다.</li>
+      <li><code>sample_business_requirements_business_rules.csv</code> — 이 파일은 Silver 통합 파이프라인에 적용할 비즈니스 룰 10건 (BR-001 ~ BR-010)을 정의합니다
+예) 상태 정규화, 중복 제거 로직, 통화 처리, 열린 질문 등</li>
     </ul>
     <p>데모 2를 시작하기 전에 세 파일을 모두 다운로드하세요.</p>
 
@@ -1261,10 +1275,9 @@ by SOURCE_SYSTEM and is easy to rerun after future changes.</code></pre>
     </div>
 
     <p>
-      GitHub Codespaces를 사용 중이라면 로컬 장치로 파일을 다운로드할 수 없습니다.
-      대신, Codespaces 터미널에서 직접 CSV 파일을 작업 디렉터리로 가져오세요.
+      GitHub Codespaces는 클라우드 서버에서 돌아가는 개발 환경이라, 파일을 "내 PC에 다운로드"하는 게 아니라 Codespaces 안에서 다음과 같이 직접 다운로드해서 사용해야 합니다.
     </p>
-    <p>CoCo를 실행하기 전(또는 <code>/quit</code>으로 종료 후), Codespaces 터미널에서 다음을 실행하세요:</p>
+    <p>CoCo가 실행 중이라면 <code>/quit</code>으로 종료 후, Codespaces 터미널에서 다음을 실행하세요:</p>
     <pre><code>BASE="https://raw.githubusercontent.com/Snowflake-Labs/sfquickstarts/master/site/sfguides/src/cortex-code-foundations/assets"
 
 curl -O "$BASE/sample_business_requirements_source_onboarding.csv"
@@ -1422,6 +1435,16 @@ PRD에서 Baan과 Workday를 추가 AP 인보이스 소스로 도입한다고 �
 - 엔지니어링 검토가 필요한 가정 사항
 - 업데이트가 완료되었음을 증명하는 검증 쿼리</code></pre>
 
+    <div class="annotation">
+      <div class="annotation-header">
+        <span class="annotation-icon">✏️</span>
+        <span class="annotation-label">추가 안내</span>
+      </div>
+      <p>Snowsight에서 <strong>Transformation > Dynamic Table</strong> 항목으로 이동 후 변경된 Dynamic Table을 확인해볼수 있습니다.</p>
+      <p>변경된 Dynamic Table을 클릭 후 <strong>Graph</strong> 탭을 선택하여 Data Lineage를 확인해보세요. </p>
+      <p>베이스(소스) 테이블이 기존 몇개에서 몇개로 변경되었나요?</p>
+    </div>
+
     <h3><span class="step-label">Step 2.5</span> 인계 아티팩트 저장 (선택)</h3>
     <details class="prompt-original">
       <summary>영어 원문</summary>
@@ -1551,6 +1574,17 @@ AP_ANALYTICS_ASSISTANT라는 이름의 에이전트를 생성해.
 - 항상 세 부분으로 응답할 것: (1) 최종 답변, (2) 사용된 SQL, (3) 데이터 기록가(grain) 또는 필터에 대한 가정 사항
 - 요청된 지표나 시간 기록가가 애매한 경우 명확화 질문을 할 것
 프로젝트 파일과 함께 저장할 수 있는 설정(configuration)을 반환해줘.</code></pre>
+
+    <div class="annotation">
+      <div class="annotation-header">
+        <span class="annotation-icon">✏️</span>
+        <span class="annotation-label">추가 안내</span>
+      </div>
+      <p>Snowsight에서 <strong>AI & ML > Agents</strong> 항목으로 이동 후 생성된 Agent를 확인할 수 있습니다.</p>
+      <p>Snowsight에서 <strong>AI & ML > Snowflake CoWork</strong> 항목으로 이동 후 생성된 Agent를 CoWork를 활용해 사용해 보세요.</p>
+      <p>어떤 질문을 할 수 있나요? 답변은 어떤가요?</p>
+    </div>
+
 
     <h3><span class="step-label">Step 3.4</span> 시맨틱 뷰 감사</h3>
     <details class="prompt-original">
